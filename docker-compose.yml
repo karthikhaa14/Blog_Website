@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build: ./Frontend
+    ports:
+      - "5173:5173"
+    container_name: frontend-container
+    networks:
+      - blog
+    volume:
+      - data: /frontend/data
+  backend:
+    build: ./Backend
+    ports:
+    - "5000:5000"
+    container_name: backend-container
+    networks:
+      - blog
+    volume:
+      - data: /backend/data
+
+networks:
+  blog:
+    driver: bridge
+volume:
+  data:
